@@ -13,21 +13,10 @@ def init_db(): #server
     cur.execute(q1)
     q1 = "CREATE TABLE IF NOT EXISTS client(id int auto increment, username text primary key, password text, name text);"
     cur.execute(q1)
-    # cur.close()
-    # q1 = "insert into ware values(0 , 'testclient','12345','client');"
-    # cur.execute(q1)
-    # q1 = "insert into client values(0 , 'testware','12345','ware');"
-    # cur.execute(q1)
     cur.close()
-    # create_client("testclient",'12345','client')
-    # create_ware("testware",'12345','ware')
     print("SQL init compleated!")
     conn.commit()
     conn.close()
-
-#email = name
-#name = email
-
 
 def create_ware(username:str,password:str,name:str):
     conn = sqlite3.connect(dbname)
@@ -89,7 +78,6 @@ def getname_ware(username:str):
     try:
         cur.execute(sql)
         shpass = cur.fetchall()
-        #print(shpass)
         if shpass == []:
             print(f"ware ware {username} not found")
             return False
@@ -145,7 +133,6 @@ def create_client(username:str,password:str,name:str):
     sql = f'insert into client(username,password,name) values ("{username}","{hpass}","{name}");'
     try:
         cur.execute(sql)
-        # print(f"admin {username}::{password} successfully generated")
         return True
     except sqlite3.Error as error:
         print(f"SQL Error Occured:: {username} :: {error}")
@@ -246,5 +233,6 @@ def getid_client(username:str):
         cur.close()
         conn.commit()
         conn.close()
-
+        
+# Run once before start to initialize the sql to create .db files
 # init_db()
