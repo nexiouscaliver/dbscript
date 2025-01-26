@@ -18,7 +18,7 @@ def init_db(): #server
     conn.commit()
     conn.close()
 
-def create_ware(username:str,password:str,name:str):
+def create_admin(username:str,password:str,name:str):
     conn = sqlite3.connect(dbname)
     cur = conn.cursor()
     hpass = hashlib.md5(password.encode()).hexdigest()
@@ -38,7 +38,7 @@ def create_ware(username:str,password:str,name:str):
         conn.commit()
         conn.close()
 
-def load_ware(username:str,password:str):
+def load_admin(username:str,password:str):
     conn = sqlite3.connect(dbname)
     cur = conn.cursor()
     uhpass = hashlib.md5(password.encode()).hexdigest()
@@ -71,7 +71,7 @@ def load_ware(username:str,password:str):
         conn.close()
 
 
-def getname_ware(username:str):
+def getname_admin(username:str):
     conn = sqlite3.connect(dbname)
     cur = conn.cursor()
     sql = f'select name from ware where username="{username}";'
@@ -98,7 +98,7 @@ def getname_ware(username:str):
         conn.commit()
         conn.close()
 
-def getid_ware(username:str):
+def getid_admin(username:str):
     conn = sqlite3.connect(dbname)
     cur = conn.cursor()
     sql = f'select id from ware where username="{username}";'
